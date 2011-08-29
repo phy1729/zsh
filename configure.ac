@@ -748,7 +748,7 @@ AC_CHECK_LIB(c, printf, [LIBS="$LIBS -lc"])
 
 AC_CHECK_LIB(m, pow)
 
-AC_CHECK_LIB(rt, clock_gettime)
+#AC_CHECK_LIB(rt, clock_gettime)
 
 dnl Various features of ncurses depend on having the right header
 dnl (the system's own curses.h may well not be good enough).
@@ -897,7 +897,7 @@ if test "x$dynamic" = xyes; then
 fi
 
 if test x$enable_cap = xyes; then
-  AC_CHECK_LIB(cap, cap_get_proc)
+  : #AC_CHECK_LIB(cap, cap_get_proc)
 fi
 
 AC_CHECK_LIB(socket, socket)
@@ -996,7 +996,7 @@ fi
 
 if test x$gdbm != xno; then
   AC_CHECK_HEADERS(gdbm.h)
-  AC_CHECK_LIB(gdbm, gdbm_open)
+  #AC_CHECK_LIB(gdbm, gdbm_open)
 fi
 
 AC_CHECK_HEADERS(sys/xattr.h)

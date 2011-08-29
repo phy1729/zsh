@@ -5,3 +5,5 @@ load=no
 autofeatures="b:cap b:getcap b:setcap"
 
 objects="cap.o"
+
+libs="-lcap"

@@ -50,7 +50,7 @@ static int no_database_action = 0;
  * Make sure we have all the bits I'm using for memory mapping, otherwise
  * I don't know what I'm doing.
  */
-#if defined(HAVE_GDBM_H) && defined(HAVE_GDBM_OPEN)
+#if 1 || defined(HAVE_GDBM_H) && defined(HAVE_GDBM_OPEN)
 
 #include <gdbm.h>
 

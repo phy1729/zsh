@@ -7,3 +7,5 @@ functions='Functions/Calendar/*'
 autofeatures="b:strftime p:EPOCHSECONDS p:EPOCHREALTIME p:epochtime"
 
 objects="datetime.o"
+
+libs="-lrt"
