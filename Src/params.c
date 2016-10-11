@@ -3846,7 +3846,11 @@ randomgetfn(UNUSED(Param pm))
 void
 randomsetfn(UNUSED(Param pm), zlong v)
 {
+#ifdef HAVE_SRAND_DETERMINISTIC
+    srand_deterministic((unsigned int)v);
+#else
     srand((unsigned int)v);
+#endif
 }
 
 /* Function to get value for special parameter `SECONDS' */
