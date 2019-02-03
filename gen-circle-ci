@@ -1,0 +1,95 @@
+#!/usr/bin/env zsh
+
+cat <<'EOF' >.circleci/config.yml
+---
+version: 2.1
+commands:
+  setup_centos_7:
+    steps:
+      - run: yum -y install autoconf gcc git make util-linux yum-utils
+      - run: yum-builddep -y zsh
+  setup_debian_9:
+    steps:
+      - run: printf 'deb-src http://deb.debian.org/debian stretch main\n' >>/etc/apt/sources.list
+      - run: apt-get update
+      - run: apt-get install git mount
+      - run: apt-get -y build-dep zsh
+  setup_void:
+    steps:
+      - run: 
+          command: xbps-install -Sy autoconf gcc gdbm-devel git libcap-devel make ncurses-devel pcre-devel
+          shell: /bin/sh
+  test:
+    parameters:
+      flags:
+        type: string
+        description: flags to pass to ./configure
+    steps:
+      - run:
+          name: Checkout code
+          shell: /bin/sh
+          command: |
+                    git clone --depth=1 https://github.com/phy1729/zsh.git .
+                    git fetch --depth=1 origin "$CIRCLE_SHA1"
+                    git checkout "$CIRCLE_SHA1"
+      - run:
+          command: ./Util/preconfig
+          shell: /bin/sh
+      - run:
+          command: ./configure << parameters.flags >>
+          shell: /bin/sh
+      - run:
+          command: make all
+          shell: /bin/sh
+      - run:
+          command: make test
+          shell: /bin/sh
+  test_default:
+    steps:
+      - test:
+          flags: --enable-multibyte --enable-pcre
+  test_no_multibyte:
+    steps:
+      - test:
+          flags: --enable-pcre
+
+jobs:
+EOF
+
+local images=(
+  centos_7 centos:7
+  debian_9 debian:9
+  void voidlinux/voidlinux
+)
+
+local tests=(
+  default
+  no_multibyte
+)
+
+for os image in $images; do
+  for test in $tests; do
+    cat <<EOF >>.circleci/config.yml
+  ${os}-$test:
+    docker:
+      - image: $image
+    steps:
+      - setup_$os
+      - test_$test
+
+EOF
+  done
+done
+
+cat <<'EOF' >>.circleci/config.yml
+workflows:
+  version: 2
+  test:
+    jobs:
+EOF
+
+for os _ in $images; do
+  for test in $tests; do
+    print "      - ${os}-$test" >>.circleci/config.yml
+  done
+done

@@ -1,0 +1,105 @@
+---
+version: 2.1
+commands:
+  setup_centos_7:
+    steps:
+      - run: yum -y install autoconf gcc git make util-linux yum-utils
+      - run: yum-builddep -y zsh
+  setup_debian_9:
+    steps:
+      - run: printf 'deb-src http://deb.debian.org/debian stretch main\n' >>/etc/apt/sources.list
+      - run: apt-get update
+      - run: apt-get install git mount
+      - run: apt-get -y build-dep zsh
+  setup_void:
+    steps:
+      - run: 
+          command: xbps-install -Sy autoconf gcc gdbm-devel git libcap-devel make ncurses-devel pcre-devel
+          shell: /bin/sh
+  test:
+    parameters:
+      flags:
+        type: string
+        description: flags to pass to ./configure
+    steps:
+      - run:
+          name: Checkout code
+          shell: /bin/sh
+          command: |
+                    git clone --depth=1 https://github.com/phy1729/zsh.git .
+                    git fetch --depth=1 origin "$CIRCLE_SHA1"
+                    git checkout "$CIRCLE_SHA1"
+      - run:
+          command: ./Util/preconfig
+          shell: /bin/sh
+      - run:
+          command: ./configure << parameters.flags >>
+          shell: /bin/sh
+      - run:
+          command: make all
+          shell: /bin/sh
+      - run:
+          command: make test
+          shell: /bin/sh
+  test_default:
+    steps:
+      - test:
+          flags: --enable-multibyte --enable-pcre
+  test_no_multibyte:
+    steps:
+      - test:
+          flags: --enable-pcre
+
+jobs:
+  centos_7-default:
+    docker:
+      - image: centos:7
+    steps:
+      - setup_centos_7
+      - test_default
+
+  centos_7-no_multibyte:
+    docker:
+      - image: centos:7
+    steps:
+      - setup_centos_7
+      - test_no_multibyte
+
+  debian_9-default:
+    docker:
+      - image: debian:9
+    steps:
+      - setup_debian_9
+      - test_default
+
+  debian_9-no_multibyte:
+    docker:
+      - image: debian:9
+    steps:
+      - setup_debian_9
+      - test_no_multibyte
+
+  void-default:
+    docker:
+      - image: voidlinux/voidlinux
+    steps:
+      - setup_void
+      - test_default
+
+  void-no_multibyte:
+    docker:
+      - image: voidlinux/voidlinux
+    steps:
+      - setup_void
+      - test_no_multibyte
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - centos_7-default
+      - centos_7-no_multibyte
+      - debian_9-default
+      - debian_9-no_multibyte
+      - void-default
+      - void-no_multibyte
