@@ -267,7 +267,7 @@ _git-bisect () {
           ;;
         (run)
           _arguments \
-            '*:: : _normal' && ret=0
+            '*:: : _normal -p $service' && ret=0
           ;;
         (terms)
 	  _arguments --term-good --term-bad && ret=0
@@ -1901,8 +1901,7 @@ _git-submodule () {
           _arguments -S \
             '(-q --quiet)'{-q,--quiet}'[suppress all output]' \
             '--recursive[traverse submodules recursively]' \
-            '(-):command: _command_names -e' \
-            '*::arguments: _normal' && ret=0
+            '*:: : _normal -p $service' && ret=0
           ;;
         (sync)
           _arguments -S \
@@ -7854,7 +7853,7 @@ _git() {
 	if ! _call_function ret _git-$words[1]; then
 	  if [[ $words[1] = \!* ]]; then
 	    words[1]=${words[1]##\!}
-	    _normal && ret=0
+	    _normal -p $service && ret=0
 	  elif zstyle -T :completion:$curcontext: use-fallback; then
 	    _default && ret=0
 	  else

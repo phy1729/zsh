@@ -14,5 +14,4 @@ _arguments -s : \
   '-s[print stack backtraces]' \
   '(-n :)-p+[examine process with the specified pid]: : _pids' \
   '-t+[examine only the specified syscall]: : _sys_calls' \
-  '1: : _command_names -e' \
-  '*:: : _normal'
+  '*:: : _normal -p $service'

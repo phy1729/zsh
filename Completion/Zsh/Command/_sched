@@ -18,4 +18,4 @@ if [[ CURRENT -eq 2 ]]; then
     return 1
   fi
 fi
-compset -n 3 && _normal
+compset -n 3 && _normal -P

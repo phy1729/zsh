@@ -60,7 +60,7 @@ case $OSTYPE in
     args+=(
       '-t+[specify interval of data flushing]:interval (seconds)'
       '-k[log keys sent to the program as well as output]'
-      '*:::arguments: _normal'
+      '*::: : _normal'
     )
   ;|
   darwin*|freebsd*)

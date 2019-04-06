@@ -30,11 +30,7 @@ _arguments -C -s \
 case "$state" in
 command)
   compset -q
-  if [[ $CURRENT -eq 1 ]]; then
-    _command_names -e "$@" && ret=0
-  else
-    _normal && ret=0
-  fi
+  _normal -p $service && ret=0
   ;;
 
 arg1)

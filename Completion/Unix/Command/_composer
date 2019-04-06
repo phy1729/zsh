@@ -427,7 +427,7 @@ _composer_exec() {
     shift words
     (( CURRENT-- ))
     unset _composer_cmd
-    _normal && ret=0
+    _normal -p $service && ret=0
   }
 
   return ret
@@ -601,7 +601,7 @@ _composer_run-script() {
     shift words
     (( CURRENT-- ))
     unset _composer_cmd
-    _normal && ret=0
+    _normal -p $service && ret=0
   }
 
   return ret

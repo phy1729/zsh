@@ -13,8 +13,7 @@ _zlogin() {
 		'-d[Disconnect on zone halt]' \
 		- set2 \
 		'-S["Safe" login mode]' \
-		'(-):command name: _command_names -e' \
-		'*::utility: _normal'
+                '*:: : _normal -p $service'
 }
 
 _zlogin "$@"

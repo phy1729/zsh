@@ -21,7 +21,7 @@ if [[ -n $state ]]; then
   if (( ${dashes:=$words[(I)--]} )); then
     shift dashes words
     (( CURRENT -= dashes ))
-    _normal
+    _normal -p $service
     return
   fi
   if [[ $CURRENT -gt 3 && $words[CURRENT] = - ]]; then

@@ -227,7 +227,7 @@ _rpm () {
       ;;
     command)
       compset -q
-      _normal
+      _normal -p $service
       ;;
     target)
       _wanted targets expl 'target platform' compadd \

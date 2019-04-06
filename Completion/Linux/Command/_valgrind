@@ -5,8 +5,7 @@ local -a cmd common_{own_malloc,read_varinfo,report_errors,partial}
 local -a args args_{addrcheck,drd,memcheck,cachegrind,helgrind,lackey,massif,none,exp_{bbv,dhat,sgcheck}}
 
 cmd=(
-  '1: : _command_names -e'
-  '*::args :_normal'
+  '*::  : _normal -p $service'
 )
 
 if [[ $service = *_OPTS* ]]; then

@@ -60,10 +60,8 @@ case $state in
   args)
     if [[ $OSTYPE = solaris* ]] && (( $+opt_args[-p] )); then
       _pids && ret=0
-    elif (( CURRENT == 1 )); then
-      _command_names -e && ret=0
     else
-      _normal && ret=0
+      _normal -p $service && ret=0
     fi
   ;;
   userfuncs)

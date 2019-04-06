@@ -60,5 +60,4 @@ _arguments -s $args \
   '-E[specify EOF marker]:end-of-file marker' \
   '(-x -i)-I[specify replacement string for command line]:replacement string' \
   '(-n -l)-L[call program for every number of lines]:number of input lines' \
-  '(-):command: _command_names -e' \
-  '*::args: _normal'
+  '*:: : _normal -p $service'

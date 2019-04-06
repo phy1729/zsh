@@ -41,8 +41,7 @@ _arguments -C -s \
   '(- 1 *)-h[display help information]' \
   '(- 1 *)-V[display version information]' \
   '(-c)-k[obtain stack trace between each syscall]' \
-  '(-):command name: _command_names -e' \
-  '*::arguments:_normal' && ret=0
+  '*:: : _normal -p $service' && ret=0
 
 case $state in
   expressions)
@@ -81,11 +80,7 @@ case $state in
     compset -P '\\'
     if (( ! $+opt_args[-ff] )) && compset -P '(!|\|)'; then
       compset -q
-      if (( CURRENT == 1 )); then
-	_command_names -e && ret=0
-      else
-	_normal && ret=0
-      fi
+      _normal -p $service && ret=0
     else
       _files && ret=0
     fi

@@ -143,7 +143,7 @@ case "$words[1]" in
       '(--all)--pipe[supply file contents as the standard input]' \
       '--match[execute command on files matching a pattern]:pattern:' \
       '--not[execute command on files not matching a pattern]:pattern:' \
-      '--:command: _command_names -e:*::arguments: _normal' \
+      '--: : _normal -p $service' \
       ':project name:_prcs_projects' \
       '*:file or directory:_files'
   ;;

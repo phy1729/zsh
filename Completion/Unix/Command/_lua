@@ -54,7 +54,7 @@ _lua() {
     _description files expl 'script argument'
     _files "${(@)expl}" && ret=0
   else
-    _normal && ret=0
+    _normal -p $service && ret=0
   fi
 
   return ret

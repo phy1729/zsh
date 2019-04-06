@@ -31,5 +31,4 @@ _arguments -s -S $args \
   "${root}-u+[run as specified user]:user:_users" \
   '(- 1 *)'{-V,--version}'[display version information]' \
   "($hlp)*-x+[modify which static functions to trace]:filter" \
-  '(-):command name: _command_names -e' \
-  '*::arguments:_normal'
+  '*:: : _normal -p $service'

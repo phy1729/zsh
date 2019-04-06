@@ -4,7 +4,7 @@ local expl
 
 if [[ CURRENT -eq 2 ]]; then
   compset -q
-  _normal
+  _normal -P
 else
   _signals -a
 fi

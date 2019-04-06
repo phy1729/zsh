@@ -53,7 +53,7 @@ while [[ -n $PREFIX ]]; do
     elif ! _globqual_delims; then
       # still completing command to eval
       compset -q
-      _normal
+      _normal -P
       return
     fi
     ;;
@@ -189,7 +189,7 @@ while [[ -n $PREFIX ]]; do
         return
       elif ! _globqual_delims; then
         compset -q
-        _normal
+        _normal -P
         return
       fi
     elif [[ $IPREFIX[-1] = + ]]; then

@@ -31,7 +31,7 @@ case $variant in
     then
       _cmdstring && ret=0
     else
-      _normal && ret=0
+      _normal -P && ret=0
     fi
     ;;
   # watch(1) has completely different semantics on freebsd compared to linux, hence:

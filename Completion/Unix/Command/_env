@@ -44,7 +44,7 @@ if [[ -n $state ]]; then
     shift words
     (( CURRENT-- ))
   done
-  _normal && ret=0
+  _normal -p $service && ret=0
 fi
 
 return ret

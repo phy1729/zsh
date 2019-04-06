@@ -112,7 +112,7 @@ _ssh () {
       '(-k)-P[specify PKCS#11 shared library whitelist]:PKCS#11 library whitelist pattern' \
       '(-k -c)-s[force sh-style shell]' \
       '-t[set default maximum lifetime for identities]:maximum lifetime (in seconds or time format):' \
-      '*::command: _normal'
+      '*:: : _normal -p $service'
     return
     ;;
   ssh-keygen)
@@ -615,7 +615,7 @@ _ssh () {
       local -a _comp_priv_prefix
       shift 1 words
       (( CURRENT-- ))
-      _normal
+      _normal -P
       return
       ;;
     userhost)

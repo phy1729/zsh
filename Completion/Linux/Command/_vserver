@@ -16,8 +16,7 @@ _vserver () {
       _arguments -C \
 	'1: :->vsnames' \
 	'2: :->cmds' \
-	'3:command name: _command_names -e'  \
-	'*::arguments: _normal' && ret=0
+	'*:: : _normal -p $service' && ret=0
       ;;
     stop|restart|condrestart|enter|running|status)
       _arguments -C \

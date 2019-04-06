@@ -20,7 +20,7 @@ case $state in
     if [[ -n ${opt_args[(I)-c|-s|--shinstdin]} ]]; then
       _files
     else
-      _normal
+      _normal -P
     fi
     ;;
 esac

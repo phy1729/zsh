@@ -50,7 +50,7 @@ _perl_normal() {
     shift words
     (( CURRENT-- ))
   fi
-  _normal && ret=0
+  _normal -p $service && ret=0
 }
 
 _perl_m_opt () {

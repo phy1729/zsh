@@ -6,5 +6,4 @@ _arguments \
   '-s[save the fakeroot environment on exit]:save file:_files' \
   '-i[load a previously saved environment]:file:_files' \
   '(-u --unknown-is-real)'{-u,--unknown-is-real}'[use real ownership of previously unknown files]' \
-  '(-):command name:_command_names -e'  \
-  '*::arguments:_normal'
+  '*:: : _normal -p $service'

@@ -13,7 +13,7 @@ _arguments -C \
   '(   -N       -B    -D   )-p[usually 1-99; only for FIFO, RR or ISO]:static priority' \
   '-a[cpu affinity]:mask or list' \
   '-n[set niceness to NICE_LEVEL]:priority' \
-  '-e[start COMMAND with specified policy/priority]:program: _command_names -e:*::program arguments: _normal' \
+  '-e[start COMMAND with specified policy/priority]:program: _command_names -e:*:: : _normal -p $service' \
   '-v[be verbose]' \
   '*:processes:->processes' && ret=0
 

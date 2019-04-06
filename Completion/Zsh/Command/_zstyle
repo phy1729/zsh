@@ -516,7 +516,7 @@ while (( $#state )); do
     (command)
       shift 3 words
       (( CURRENT -= 3 ))
-      _normal
+      _normal -P
       ;;
 
     (insert-ids)

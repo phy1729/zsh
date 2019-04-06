@@ -17,8 +17,7 @@ _arguments -S \
        '(-q --quiet)'{-q,--quiet}'[quiet]' \
        '(-v --verbose)'{-v,--verbose}'[verbose]' \
        '(-V --version)'{-V,--version}'[version]' \
-       '(-):command name: _command_names -e' \
-       '*::arguments: _normal' && return 0
+       '*:: : _normal -p $service' && return 0
 
 case "$state" in
   chroot)

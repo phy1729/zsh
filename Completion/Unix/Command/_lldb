@@ -44,12 +44,12 @@ case $state in
       if [[ $CURRENT -eq 1 ]]; then
         _wanted executables expl 'executable' _files -g '*(-*)' && ret=0
       else
-	_normal && ret=0
+	_normal -p $service && ret=0
       fi
     else
       words=( ${(v)opt_args[(i)file-(-f|--file)]} "$words[@]" )
       (( CURRENT++ ))
-      _normal && ret=0
+      _normal -p $service && ret=0
     fi
 esac
 

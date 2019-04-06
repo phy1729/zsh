@@ -16,4 +16,4 @@ words=("${(@Q)words}")
 
 (( CURRENT = ${#words} - end_offset ))
 
-_normal
+_normal -P

@@ -109,7 +109,7 @@ case "$state" in
       shift words
       (( CURRENT-- ))
     fi
-    _normal && ret=0
+    _normal -p $service && ret=0
   ;;
   charsets)
     charsets=( $(_call_program charsets $RUBY -e 'puts\ Encoding.list' 2>/dev/null) )

@@ -22,7 +22,7 @@ _arguments -s -C -S \
   '(-c --concurrent-shell -w --wait-shell)'{-c,--concurrent-shell}'[execute shell concurrently]' \
   '(-F --forklimit)'{-F,--forklimit}'[concurrent with limit on number]:fork limit' \
   '(-)'{-V,--version}'[display version information]' \
-  '*::args: _normal' && return
+  '*:: : _normal -p $service' && return
 
 if [[ $state = groups ]]; then
   if ! zstyle -s ":completion:${curcontext}:dsh-groups" dsh-groups grp; then

@@ -8,7 +8,7 @@ else
     compset -n $n
     _alternative \
       'files:file:_files' \
-      'commands:command:_normal' && return 0
+      'commands: : _normal -P' && return 0
   fi
   _default
 fi

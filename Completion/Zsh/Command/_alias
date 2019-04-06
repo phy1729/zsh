@@ -14,7 +14,7 @@ _arguments -C -s -A "-*" -S \
 if [[ -n "$state" ]]; then
   if compset -P 1 '*='; then
     compset -q
-    _normal
+    _normal -P
   else
     compset -S '=*' || suf='='
     type=( ${opt_args[(i)[-+][grs]]#?} )

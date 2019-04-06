@@ -27,4 +27,4 @@ _arguments -s -S \
   '--license[display licensing information]' \
   '--reference[open MSDN reference for ShellExecute]' \
   '1:file: _alternative "programs:program: _command_names -e" "files:file:_files" "urls:URL:_urls"' \
-  '*::program arguments: _normal'
+  '*:: : _normal -p $service'

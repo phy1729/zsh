@@ -25,8 +25,7 @@ _arguments -S \
        '--recover-session[recover an existing session]' \
        '(-e --end-session)'{-e,--end-session}'[end an existing session]' \
        '(-f --force)'{-f,--force}'[force operation]' \
-       '(-):command name: _command_names -e' \
-       '*::arguments: _normal' && return 0
+       '*:: : _normal -p $service' && return 0
 
 case "$state" in
 	(chroot)

@@ -76,7 +76,7 @@ java)
     '(- 1)-X-[non-standard java option]:option' \
     '(- 1)-jar[specify a program encapsulated as jar]:jar:_files -g \*.jar\(-.\)' \
     '(-):class:_java_class -m main ${(kv)opt_args[(i)(-classpath|-cp)]}' \
-    '*::args:= _normal' \
+    '*:: := _normal -p $words[1]' \
      && return 0
   ;;
 
