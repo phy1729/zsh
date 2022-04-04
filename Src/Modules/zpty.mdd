@@ -5,3 +5,5 @@ load=no
 autofeatures="b:zpty"
 
 objects="zpty.o"
+
+libs="-lutil"
